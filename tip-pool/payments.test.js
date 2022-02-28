@@ -30,16 +30,17 @@ describe("Payments test (with setup and tear-down)", function() {
     
         let paymentTdList = document.querySelectorAll('#paymentTable tbody tr td');
     
-        expect(paymentTdList.length).toEqual(3);
+        expect(paymentTdList.length).toEqual(4);
         expect(paymentTdList[0].innerText).toEqual('$100');
         expect(paymentTdList[1].innerText).toEqual('$15');
         expect(paymentTdList[2].innerText).toEqual('15%');
-        // expect(paymentTdList[3].innerText).toEqual('X');
+        expect(paymentTdList[3].innerText).toEqual('X');
     });
 
     it('should update summary table on updateSummary()', function () {
         let curPayment = createCurPayment();
         allPayments['payment1'] = curPayment;
+        submitPaymentInfo();
     
         let summaryTdList = document.querySelectorAll('#summaryTable tbody tr td');
     
@@ -53,10 +54,9 @@ describe("Payments test (with setup and tear-down)", function() {
         billAmtInput.value = '';
         tipAmtInput.value = '';
         paymentTbody.innerHTML = '';
-        //summaryTds[0].innerHTML = '';
-        //summaryTds[1].innerHTML = '';
-        //summaryTds[2].innerHTML = '';
-        //serverTbody.innerHTML = '';
+        summaryTds[0].innerHTML = '';
+        summaryTds[1].innerHTML = '';
+        summaryTds[2].innerHTML = '';
         allPayments = {};
         paymentId = 0;
     });
